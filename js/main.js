@@ -15,9 +15,18 @@ chooseMove();
 
 
 // Event listener for restart button
-
+let restartBtn = document.querySelector('.restart');
+restartBtn.addEventListener('click', () => {
+    clearBoard();
+})
 
 // function to clear board back to default upon restart button being clicked
+function clearBoard() {
+    let boxButtons = document.querySelectorAll('.boxgrid');
+    boxButtons.forEach(button => {
+        button.firstElementChild.textContent = '';
+    })
+}
 
 
 // function to check for winner and change heading to reflect winner 
