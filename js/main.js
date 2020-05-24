@@ -1,6 +1,6 @@
-
-gameBoard = ['','','','','','','','',''];
-boxes = [];
+let gameBoard = ['','','','','','','','',''];
+let boxes = [];
+let headingText = document.querySelector('.playerturn');
 
 for (i = 1; i <= 9; i++) {
     boxes.push(document.querySelector(`[id = "box${i}"]`));
@@ -17,9 +17,7 @@ function updateBoard() {
 function checkWinner() {
     if (gameBoard[0] == gameBoard[1] && gameBoard[0] == gameBoard[2]) {
         if (gameBoard[0] == "X") {
-            console.log("CHECKWINNER TRIGGERED")
             headingText.textContent = "Player 1 Wins!";
-            // ^ Text not currently showing because there's no code to exit the chooseMove(function), so the text gets overridden. 
         } else if (gameBoard[0] == "O") {
             headingText.textContent = "Player 2 Wins!";
         }
@@ -80,7 +78,6 @@ function checkWinner() {
     } 
 }
 
-
 // Event listener and function for choosing move
 function chooseMove() {
     let playerOne = 1;
@@ -111,16 +108,11 @@ function chooseMove() {
     })
 }
 
-
-let headingText = document.querySelector('.playerturn');
-// Player's turn: Need to change heading and symbol in event listener
-
-
-
 // Event listener for restart button
 let restartBtn = document.querySelector('.restart');
 restartBtn.addEventListener('click', () => {
     clearBoard();
+    console.log(headingText.textContent);
 })
 
 // function to clear board back to default upon restart button being clicked
@@ -129,24 +121,10 @@ function clearBoard() {
     headingText.textContent = "Player 1's Turn";
     boxButtons.forEach(button => {
         button.firstElementChild.textContent = '';
-        
     })
+    gameBoard = ['','','','','','','','',''];
+    chooseMove();
 }
-
-
-// function to check for winner and change heading to reflect winner 
-//gameBoard = ['','','','','','','','',''];
-// function checkWinner() {
-//     if (gameBoard[0] == gameBoard[1] && gameBoard[0] == gameBoard[2]) {
-//         if (gameBoard[0] == "X") {
-//             headingText.textContent = "Player 1 Wins!";
-//         } else if (gameBoard[0] == "O") {
-//             headingText.textContent = "Player 2 Wins!";
-//         }
-//     }
-// }
-
-
 
 // Run game 
 chooseMove();
