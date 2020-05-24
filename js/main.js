@@ -5,9 +5,6 @@ boxes = [];
 for (i = 1; i <= 9; i++) {
     boxes.push(document.querySelector(`[id = "box${i}"]`));
 }
-//console.log(boxes[0].firstElementChild.textContent);
-
-//console.log(boxes);
 
 function updateBoard() {
     for (i = 0; i < 9; i++) {
@@ -15,6 +12,72 @@ function updateBoard() {
             gameBoard[i] = boxes[i].firstElementChild.textContent; 
         }
     }
+}
+
+function checkWinner() {
+    if (gameBoard[0] == gameBoard[1] && gameBoard[0] == gameBoard[2]) {
+        if (gameBoard[0] == "X") {
+            console.log("CHECKWINNER TRIGGERED")
+            headingText.textContent = "Player 1 Wins!";
+            // ^ Text not currently showing because there's no code to exit the chooseMove(function), so the text gets overridden. 
+        } else if (gameBoard[0] == "O") {
+            headingText.textContent = "Player 2 Wins!";
+        }
+    } else if (gameBoard[3] == gameBoard[4] && gameBoard[3] == gameBoard[5]) {
+        if (gameBoard[3] == "X") {
+            headingText.textContent = "Player 1 Wins!";
+        } else if (gameBoard[3] == "O") {
+            headingText.textContent = "Player 2 Wins!";
+        }
+    } else if (gameBoard[6] == gameBoard[7] && gameBoard[6] == gameBoard[8]) {
+        if (gameBoard[6] == "X") {
+            headingText.textContent = "Player 1 Wins!";
+        } else if (gameBoard[6] == "O") {
+            headingText.textContent = "Player 2 Wins!";
+        }
+    } else if (gameBoard[0] == gameBoard[3] && gameBoard[0] == gameBoard[6]) {
+        if (gameBoard[0] == "X") {
+            headingText.textContent = "Player 1 Wins!";
+        } else if (gameBoard[0] == "O") {
+            headingText.textContent = "Player 2 Wins!";
+        }
+    } else if (gameBoard[1] == gameBoard[4] && gameBoard[1] == gameBoard[7]) {
+        if (gameBoard[1] == "X") {
+            headingText.textContent = "Player 1 Wins!";
+        } else if (gameBoard[1] == "O") {
+            headingText.textContent = "Player 2 Wins!";
+        }
+    } else if (gameBoard[2] == gameBoard[5] && gameBoard[2] == gameBoard[8]) {
+        if (gameBoard[2] == "X") {
+            headingText.textContent = "Player 1 Wins!";
+        } else if (gameBoard[2] == "O") {
+            headingText.textContent = "Player 2 Wins!";
+        }
+    } else if (gameBoard[0] == gameBoard[4] && gameBoard[0] == gameBoard[8]) {
+        if (gameBoard[0] == "X") {
+            headingText.textContent = "Player 1 Wins!";
+        } else if (gameBoard[0] == "O") {
+            headingText.textContent = "Player 2 Wins!";
+        }
+    } else if (gameBoard[6] == gameBoard[7] && gameBoard[6] == gameBoard[8]) {
+        if (gameBoard[6] == "X") {
+            headingText.textContent = "Player 1 Wins!";
+        } else if (gameBoard[6] == "O") {
+            headingText.textContent = "Player 2 Wins!";
+        }
+    } else if (gameBoard[6] == gameBoard[7] && gameBoard[6] == gameBoard[8]) {
+        if (gameBoard[6] == "X") {
+            headingText.textContent = "Player 1 Wins!";
+        } else if (gameBoard[6] == "O") {
+            headingText.textContent = "Player 2 Wins!";
+        }
+    } else if (gameBoard[2] == gameBoard[4] && gameBoard[2] == gameBoard[6]) {
+        if (gameBoard[2] == "X") {
+            headingText.textContent = "Player 1 Wins!";
+        } else if (gameBoard[2] == "O") {
+            headingText.textContent = "Player 2 Wins!";
+        }
+    } 
 }
 
 
@@ -28,17 +91,21 @@ function chooseMove() {
             if (playerOne === 1) {
                 button.firstElementChild.textContent = 'X';
                 updateBoard();
-                console.log(gameBoard);
-                headingText.textContent = "Player 2's Turn"
-                playerOne = 0;
-                playerTwo = 1;
+                checkWinner();
+                if (!(headingText.textContent == "Player 2 Wins!" || headingText.textContent == "Player 1 Wins!")) {
+                    headingText.textContent = "Player 2's Turn";
+                    playerOne = 0;
+                    playerTwo = 1;
+                }
             } else if (playerTwo === 1) {
                 button.firstElementChild.textContent = 'O';
                 updateBoard();
-                console.log(gameBoard);
-                headingText.textContent = "Player 1's Turn"
-                playerTwo = 0;
-                playerOne = 1;
+                checkWinner();
+                if (!(headingText.textContent == "Player 2 Wins!" || headingText.textContent == "Player 1 Wins!")) {
+                    headingText.textContent = "Player 1's Turn"
+                    playerTwo = 0;
+                    playerOne = 1; 
+                }
             }
         })
     })
@@ -68,8 +135,19 @@ function clearBoard() {
 
 
 // function to check for winner and change heading to reflect winner 
+//gameBoard = ['','','','','','','','',''];
+// function checkWinner() {
+//     if (gameBoard[0] == gameBoard[1] && gameBoard[0] == gameBoard[2]) {
+//         if (gameBoard[0] == "X") {
+//             headingText.textContent = "Player 1 Wins!";
+//         } else if (gameBoard[0] == "O") {
+//             headingText.textContent = "Player 2 Wins!";
+//         }
+//     }
+// }
 
 
+
+// Run game 
 chooseMove();
 
-// THE UPDATEBOARD AND GAMEBOARD FUNCTION STUFF DOESN'T WORK CURRENTLY. 
